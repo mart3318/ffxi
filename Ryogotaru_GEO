@@ -1,0 +1,568 @@
+include('organizer-lib')
+
+function get_sets()
+    MP_efficiency = 0
+    macc_level = 0
+    
+    sets.TH = {
+       -- hands={ name="Merlinic Dastanas", augments={'"Treasure Hunter"+2',},hp=9,mp=20},
+       -- legs={ name="Merlinic Shalwar", augments={'Pet: Accuracy+16 Pet: Rng. Acc.+16','Pet: Haste+1','"Treasure Hunter"+1','Mag. Acc.+9 "Mag.Atk.Bns."+9',},hp=29,mp=44},
+       -- waist="Chaac Belt",
+    }
+    
+    sets.precast = {}
+    -- sets.Idris = {main="Idris"}
+    -- sets.Mafic = {main="Mafic Cudgel"}
+    
+    sets.precast.FastCast = {}
+	
+    sets.precast.FastCast.Default = {
+        --main="",
+        --sub="",
+        --range="",
+        --ammo="",
+        --feet="",
+        --body="",
+        hands="Repartie Gloves",
+        legs="Geomancy Pants",
+        head="Haruspex Hat",
+        --neck="",
+        --waist="",
+        --left_ear="",
+        right_ear="Loquac. Earring",
+        left_ring="Prolix Ring",
+        right_ring="Weather. Ring",
+        back="Lifestream Cape",
+    }
+    
+    sets.precast.FastCast['Elemental Magic'] = { 
+		--main="",
+        --sub="",
+        --range="",
+        --ammo="",
+        --feet="",
+        --body="",
+        hands="Bagua Mitaines",
+        legs="Geomancy Pants",
+        head="Haruspex Hat",
+        --neck="",
+        --waist="",
+        --left_ear="",
+        right_ear="Loquac. Earring",
+        left_ring="Prolix Ring",
+        right_ring="Weather. Ring",
+        back="Lifestream Cape",
+    }
+    
+    sets.precast.FastCast['Healing Magic'] = {
+		--main="",
+        --sub="",
+        --range="",
+        --ammo="",
+        --feet="",
+        body="Nefer Kalasiris",
+        hands="Repartie Gloves",
+        legs="Geomancy Pants",
+        head="Haruspex Hat",
+        --neck="",
+        --waist="",
+        --left_ear="",
+        right_ear="Loquac. Earring",
+        left_ring="Prolix Ring",
+        right_ring="Weather. Ring",
+        back="Lifestream Cape",
+	}
+    
+--    sets.precast.FastCast['Enhancing Magic'] = {}
+            
+--    sets.Impact = {head=empty,body="Twilight Cloak"}
+    
+    sets.midcast = {}
+    
+--    sets.midcast.Stun = {main="Marin Staff +1",sub="Enki Strap",range=empty,ammo="Hasty Pinion +1",
+--        head={ name="Merlinic Hood", augments={'"Fast Cast"+7','MND+10','Mag. Acc.+10','"Mag.Atk.Bns."+10',}}, neck="Erra Pendant", ear1="Enchanter Earring +1",ear2="Loquacious Earring",
+--        body="Geomancy Tunic +1",hands={ name="Hagondes Cuffs +1", augments={'Phys. dmg. taken -3%','Mag. Acc.+23',}},lring="Sangoma Ring",rring="Angha Ring",
+--        back={ name="Lifestream Cape", augments={'Geomancy Skill +3','Indi. eff. dur. +20','Damage taken-3%',}},waist="Ninurta's Sash",legs="Psycloth Lappas",feet="Amalric Nails +1"}
+    
+    
+    
+    sets.midcast['Elemental Magic'] = {
+        [0] = {},
+          [1] = {}
+        }
+    
+    sets.ElementalMagicMAB = {
+    --    Ice={main="Ngqoqwanb",sub="Enki Strap"},
+    --    Wind={main="Marin Staff +1",sub="Enki Strap"},
+    --    Earth={neck="Quanpur Necklace"},
+    --    Dark={head="Pixie Hairpin +1", rring="Archon Ring"}
+        }
+    
+    -- MAcc level 0 (Macc and Enmity irrelevant)
+    sets.midcast['Elemental Magic'][0][0] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Saevus Pendant +1",
+		ear1="Friomisi Earring",
+		ear2="Magnetic Earring",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="Fenrir Ring",
+		ring2="Weather. Ring",
+        back="Seshaw Cape",
+		waist="Austerity Belt",
+		legs="Helios Spats",
+		feet="Helios Boots"
+	}
+    
+    sets.midcast['Elemental Magic'][0][1] = set_combine(sets.midcast['Elemental Magic'][0][0],{body="Seidr Cotehardie"})
+    
+    -- MAcc level 1 (MAcc and Enmity relevant)
+    sets.midcast['Elemental Magic'][1][0] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Saevus Pendant +1",
+		ear1="Friomisi Earring",
+		ear2="Magnetic Earring",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="Fenrir Ring",
+		ring2="Weather. Ring",
+        back="Seshaw Cape",
+		waist="Austerity Belt",
+		legs="Helios Spats",
+		feet="Helios Boots"
+	}
+                
+    sets.midcast['Elemental Magic'][1][1] = set_combine(sets.midcast['Elemental Magic'][1][0],{body="Seidr Cotehardie"})
+    
+    
+    
+    sets.midcast['Dark Magic'] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Saevus Pendant +1",
+		ear1="Friomisi Earring",
+		ear2="Magnetic Earring",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="Perception Ring",
+		ring2="Weather. Ring",
+        back="Seshaw Cape",
+		waist="Austerity Belt",
+		legs="Helios Spats",
+		feet="Helios Boots",
+		back="Lifestream Cape"
+	}
+    
+    sets.midcast['Enfeebling Magic'] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Lasaia Pendant",
+		ear1="",
+		ear2="Magnetic Earring",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="Perception Ring",
+		ring2="Weather. Ring",
+        back="Lifestream Cape",
+		waist="Ovate Rope",
+		legs="Helios Spats",
+		feet="Helios Boots"
+	}
+        
+    sets.midcast.EnhancingDuration = {
+        main={ name="Gada", augments={'Enh. Mag. eff. dur. +6','"Mag.Atk.Bns."+9',}},
+        sub="Ammurapi Shield",
+        hands={ name="Telchine Gloves", augments={'"Elemental Siphon"+35','Enh. Mag. eff. dur. +10',}},
+        head={ name="Telchine Cap", augments={'"Elemental Siphon"+35','Enh. Mag. eff. dur. +10',}},
+        body={ name="Telchine Chas.", augments={'"Elemental Siphon"+35','Enh. Mag. eff. dur. +10',}},
+        legs={ name="Telchine Braconi", augments={'"Elemental Siphon"+35','Enh. Mag. eff. dur. +10',}},
+        feet={ name="Telchine Pigaches", augments={'Song spellcasting time -7%','Enh. Mag. eff. dur. +10',}},
+    }
+        
+    sets.midcast['Flash Nova'] = {
+        range=empty,
+        ammo="Mana Ampulla",
+        head={ name="Merlinic Hood", augments={'VIT+8','"Mag.Atk.Bns."+27','Accuracy+5 Attack+5','Mag. Acc.+18 "Mag.Atk.Bns."+18',}},
+        body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','Magic burst dmg.+11%','INT+10',}},
+        hands="Amalric Gages +1",
+        legs={ name="Merlinic Shalwar", augments={'"Mag.Atk.Bns."+30','"Occult Acumen"+10','INT+9','Mag. Acc.+5',}},
+        feet="Amalric Nails +1",
+        neck="Baetyl Pendant",
+        waist="Fotia Belt",
+        left_ear="Friomisi Earring",
+        right_ear="Crematio Earring",
+        left_ring="Shiva Ring +1",
+        right_ring="Weather. Ring",
+        back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}},
+    }
+    
+    sets.midcast.Exudation = {range=empty,ammo="Mana Ampulla",
+        head="Geomancy Galero +1",neck="Phalaina Locket",
+        body="Onca Suit",hands=empty,lring="Rajas Ring",rring="Ifrit Ring +1",
+        back="Pahtli Cape",waist="Luminary Sash",legs=empty,feet=empty,
+        }
+        
+    sets.midcast['Spirit Taker'] = sets.midcast.Exudation
+    
+    sets.midcast['Healing Magic'] = {neck="Incanter's Torque"}
+    
+    sets.midcast['Divine Magic'] = {neck="Incanter's Torque"}
+    
+    sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.EnhancingDuration,{neck="Incanter's Torque"})
+    
+    sets.midcast.Dia = sets.TH
+    sets.midcast['Dia II'] = sets.TH
+    sets.midcast.Diaga = sets.TH
+    
+	sets.ReiveNeck = {
+	neck="Arciela's Grace +1"
+	}
+    sets.midcast.Cure = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Lasaia Pendant",
+		ear1="",
+		ear2="Magnetic Earring",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="Ephedra Ring",
+		ring2="Sirona's Ring",
+        back="Tempered Cape +1",
+		waist="Austerity Belt",
+		legs="Helios Spats",
+		feet="Telchine Pigaches"}
+    
+    sets.midcast.Stoneskin = set_combine(sets.midcast.EnhancingDuration,{neck="Nodens Gorget",waist="Siegel Sash",legs="Shedir Seraweels"})
+    
+    sets.midcast.Aquaveil = set_combine(sets.midcast.EnhancingDuration,{main="Vadose Rod",head="Amalric Coif +1",sub="Genmei Shield",waist="Emphatikos Rope",legs="Shedir Seraweels"})
+    
+    sets.midcast.Refresh = set_combine(sets.midcast.EnhancingDuration,{head="Amalric Coif +1",back="Grapevine Cape",feet="Inspirited Boots"})
+    
+    sets.midcast.Cursna = {
+        --main={ name="Divinity", augments={'Attack+10','Accuracy+10','Phys. dmg. taken -3%','DMG:+15',}},
+        --sub="Genmei Shield",
+        --head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
+        --body="Vanya Robe",
+        --hands="Hieros Mittens",
+        --legs={ name="Vanya Slops", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
+        ear2="Magnetic Earring",
+		left_ring="Ephedra Ring",
+        right_ring="Weather. Ring",
+       back="Lifestream Cape",
+        --feet="Vanya Clogs",
+        --neck="Debilis Medallion",
+    }
+    
+    sets.midcast.Bolster = {body="Bagua Tunic"}
+    
+    sets.midcast['Full Circle'] = {head="Azimuth Hood",hands="Bagua Mitaines"}
+    
+    sets.midcast['Life Cycle'] = {body="Geomancy Tunic"}
+       
+    
+    sets.midcast['Radial Arcana'] = {hands="Bagua Sandals"}
+    
+    sets.midcast['Mending Halation'] = {Legs="Bagua Pants"}
+    
+    sets.midcast.Indi = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Azimuth Hood",
+		neck="Lasaia Pendant",
+		ear1="",
+		ear2="Magnetic Earring",
+        body="Bagua Tunic",
+		hands="Geomancy Mitaines",
+		ring1="Prolix Ring",
+		ring2="Weather. Ring",
+        back="Lifestream Cape",
+		waist="Austerity Belt",
+		--geomancy pants for spell interupt down -20%
+		legs="Geomancy Pants",
+		--azimuth gaiters for indi spelll duration +15
+		feet="Azimuth Gaiters"}
+    
+    sets.midcast.Geo = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Azimuth Hood",
+		neck="Lasaia Pendant",
+		ear1="",
+		ear2="Magnetic Earring",
+        body="Bagua Tunic",
+		hands="Geomancy Mitaines",
+		ring1="Prolix Ring",
+		ring2="Weather. Ring",
+        back="Lifestream Cape",
+		waist="Austerity Belt",
+		--geomancy pants for spell interupt down -20%
+		legs="Geomancy Pants",
+		--azimuth gaiters for indi spelll duration +15
+		feet="Azimuth Gaiters"}
+    sets.midcast.Geo = set_combine(sets.midcast.Geo,sets.TH)
+    
+    sets.midcast['Entrusted Indi'] = set_combine(sets.midcast.Indi,{main="Solstice"})
+    
+    
+    
+    sets.aftercast = {}
+    sets.aftercast.Idle = {}
+    sets.aftercast.Idle[false] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Dunna",
+		ammo="",
+        head="Helios Band",
+		neck="Peacock Amulet",
+		ear1="",
+		ear2="",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="",
+		ring2="",
+        back="Aptitude Mantle",
+		waist="Slipor Sash",
+		legs="Helios Spats",
+		feet="Geomancy Sandals"}
+        
+    sets.aftercast.Idle[true] = {
+		main="Magesmasher +1",
+		sub="",
+		range="Nepote Bell",
+		ammo="",
+        head="Helios Band",
+		neck="Peacock Amulet",
+		ear1="",
+		ear2="",
+        body="Jhakri Robe",
+		hands="Bagua Mitaines",
+		ring1="",
+		ring2="",
+        back="Aptitude Mantle",
+		waist="Slipor Sash",
+		legs="Helios Spats",
+		feet="Telchine Pigaches"}
+                        
+    sets.aftercast.Resting = {}
+                
+    sets.aftercast.Engaged = {
+		main="Magesmasher +1",
+		sub="",
+		range="nepote bell",
+		ammo="",
+        head="Helios Band",
+		neck="Peacock Amulet",
+		ear1="Brutal Earring",
+		ear2="",
+        body="Jhakri Robe",
+		hands="Wayfarer Cuffs",
+		ring1="Rajas Ring",
+		ring2="",
+        back="Aptitude Mantle",
+		waist="Cetl Belt",
+		legs="Helios Spats",
+		feet="Telchine Pigaches"}
+        --body="Hagondes Coat +1",hands={ name="Hagondes Cuffs +1", augments={'Phys. dmg. taken -3%','Mag. Acc.+23',}},ring1="Dark Ring",ring2="Defending Ring",
+        --back="Umbra Cape",waist="Ninurta's Sash",legs={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -4%','Magic dmg. taken -4%','Magic burst dmg.+10%',}},feet="Battlecast Gaiters"}
+    
+    sets.Obis = {}
+    sets.Obis.Fire = {waist='Hachirin-no-Obi'}
+    sets.Obis.Earth = {waist='Hachirin-no-Obi'}
+    sets.Obis.Water = {waist='Hachirin-no-Obi'}
+    sets.Obis.Wind = {waist='Hachirin-no-Obi'}
+    sets.Obis.Ice = {waist='Hachirin-no-Obi'}
+    sets.Obis.Lightning = {waist='Hachirin-no-Obi'}
+    sets.Obis.Light = {waist='Hachirin-no-Obi'}
+    sets.Obis.Dark = {waist='Hachirin-no-Obi'}
+    sets.Zodiac = {lring="Zodiac Ring"}
+    
+    sets.midcast.MB={
+        head={ name="Merlinic Hood", augments={'Mag. Acc.+24 "Mag.Atk.Bns."+24','Magic burst dmg.+11%','INT+1','Mag. Acc.+8',}},
+        body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','Magic burst dmg.+11%','INT+10',}},
+        legs={ name="Merlinic Shalwar", augments={'"Mag.Atk.Bns."+26','Magic burst dmg.+11%','INT+10','Mag. Acc.+13',}},
+        neck="Mizu. Kubikazari",
+        right_ring="Mujin Band",
+    }
+        
+    stuntarg = 'Shantotto'
+    send_command('input /macro book 2;wait .1;input /macro set 1')
+    
+    AMII = {['Freeze II']=true,['Burst II']=true,['Quake II'] = true, ['Tornado II'] = true,['Flood II']=true,['Flare II']=true}
+end
+
+function precast(spell)
+    if sets.precast[spell.english] then
+        equip(sets.precast[spell.english][macc_level] or sets.precast[spell.english])
+    elseif spell.english == 'Impact' then
+        equip(sets.precast.FastCast.Default,sets.Impact)
+        if not buffactive['Elemental Seal'] then
+            add_to_chat(8,'--------- Elemental Seal is down ---------')
+        end
+    elseif spell.action_type == 'Magic' then
+        equip(sets.precast.FastCast.Default)
+    end
+    
+    if spell.english == 'Stun' and stuntarg ~= 'Shantotto' then
+        send_command('@input /t '..stuntarg..' ---- Byrth Stunned!!! ---- ')
+    end
+end
+
+function midcast(spell)
+    equip_idle_set()
+    if buffactive.manawell or spell.mppaftercast > 50 then mp_efficiency = 0
+    else mp_efficiency = 1 end
+    
+    if spell and spell.english and string.find(spell.english,'Cur') then 
+        weathercheck(spell.element,sets.midcast.Cure)
+    elseif spell.english == 'Impact' then
+        weathercheck(spell.element,set_combine(sets.midcast['Elemental Magic'][macc_level][mp_efficiency],sets.Impact))
+    elseif spell.english:sub(1,4) == 'Geo-' then
+        equip(sets.midcast.Geo)
+    elseif spell.english:sub(1,5) == 'Indi-' then
+        if buffactive.Entrust then
+            equip(sets.midcast["Entrusted Indi"])
+        else
+            equip(sets.midcast.Indi)
+        end
+    elseif sets.midcast[spell.name] then
+        weathercheck(spell.element,sets.midcast[spell.name])
+    elseif spell.skill == 'Elemental Magic' then
+        weathercheck(spell.element,sets.midcast['Elemental Magic'][macc_level][mp_efficiency])
+        if sets.ElementalMagicMAB[spell.element] then
+            equip(sets.ElementalMagicMAB[spell.element])
+        end
+    elseif spell.skill then
+        equip(sets.aftercast.Idle)
+        weathercheck(spell.element,sets.midcast[spell.skill])
+    end
+    
+    if spell.english == 'Sneak' then
+        send_command('cancel 71;')
+    end
+end
+
+function aftercast(spell)
+    if midaction() or (spell and (spell.name == 'Mending Halation' or spell.name == 'Radial Arcana')) then
+    elseif player.status == 'Idle' then
+    
+        if not spell.english then print('NO SPELL IN AFTERCAST') return end
+        if spell and spell.english and player.status == 'Idle' and string.find(spell.english,'Geo') then
+            equip(sets.aftercast.Idle[true])
+        else
+            equip_idle_set()
+        end
+    elseif sets.aftercast[player.status] then
+        equip(sets.aftercast[player.status])
+    else
+        equip_idle_set()
+    end
+    if not spell.interrupted then
+        if spell.english == 'Sleep' or spell.english == 'Sleepga' then
+            send_command('@wait 55;input /echo ------- '..spell.english..' is wearing off in 5 seconds -------')
+        elseif spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
+            send_command('@wait 85;input /echo ------- '..spell.english..' is wearing off in 5 seconds -------')
+        elseif spell.english == 'Break' or spell.english == 'Breakga' then
+            send_command('@wait 25;input /echo ------- '..spell.english..' is wearing off in 5 seconds -------')
+        end
+    end
+end
+
+function pet_aftercast(spell)
+    if (spell and (spell.name == 'Mending Halation' or spell.name == 'Radial Arcana')) then
+        equip_idle_set()
+    end
+end
+
+function status_change(new,old)
+    if new == 'Resting' then
+        equip(sets.aftercast.Resting)
+    elseif new == 'Engaged' then
+        if not midaction() then
+            equip(sets.aftercast.Engaged)
+        end
+ --       disable('main','sub')
+    else
+        equip_idle_set()
+    end
+end
+
+function equip_idle_set(bool)
+    if bool == nil then
+        bool = pet.isvalid
+    end
+    equip(sets.aftercast.Idle[bool])
+end
+
+function weathercheck(spell_element,set)
+    if not set then return end
+    if spell_element == world.weather_element or spell_element == world.day_element then
+        equip(set,sets.Obis[spell_element])
+    else
+        equip(set)
+    end
+    if set[spell_element] then equip(set[spell_element]) end
+end
+
+function indi_change(spell,bool)
+    if not bool then windower.add_to_chat(8,"------------------- Indi effect wears off! -------------------------") end
+end
+
+function buff_change(name,gain,tab)
+    if gain then
+        print('gain',name,buffactive[name],math.floor(tab.duration/60),math.floor(tab.duration%60))
+    else
+        print('loss',name,buffactive[name],math.floor(tab.duration/60),math.floor(tab.duration%60))
+    end
+end
+
+function self_command(command)
+    if command:lower() == 'stuntarg' then
+        stuntarg = player.target.name
+        print('StunTarg: ',stuntarg)
+    elseif command:lower() == 'macc' then
+        macc_level = (macc_level+1)%2
+        print('Magic Accuracy level ',macc_level)
+    end
+end
+
+function pet_change(pet,gain)
+    if not midaction() then
+        equip_idle_set(gain)
+    end
+end
+
+function buff_change(buff, gain)
+	if buff == 'Reive Mark' then
+        if gain then
+                        equip(sets.ReiveNeck)
+                        add_to_chat(39,'Entering a Reive... [Equipping Reive Neck]')
+                        disable('neck')
+        else
+            send_command('gs c update')
+                        add_to_chat(200,'Left a Reive... [Removing Reive Neck]')
+                        enable('neck')
+		
+	end
+	end
+	end
